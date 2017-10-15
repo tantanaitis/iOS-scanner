@@ -15,17 +15,34 @@ class ViewController: UIViewController, AVCapturePhotoCaptureDelegate {
     var videoPreviewLayer: AVCaptureVideoPreviewLayer!
     var captureDeviceInput: AVCaptureDeviceInput!
     var photoOutput: AVCapturePhotoOutput!
-    @IBOutlet var screenView: UIView!
     @IBOutlet var previewView: UIView!
     @IBOutlet var captureButton: UIButton!
+    @IBOutlet var galleryButton: UIButton!
+    @IBOutlet var backButton: UIButton!
+    @IBOutlet var sendButton: UIButton!
     @IBOutlet var photo: UIImageView!
     
     @IBAction func captureImage() {
+        dissableCaptureGalleryButtons()
         let settings = AVCapturePhotoSettings()
+        view.insertSubview(photo, aboveSubview: previewView)
         photoOutput.capturePhoto(with: settings, delegate: self)
+        enableSendBackButtons()
+    }
+    
+    @IBAction func send() {
+        
+    }
+    
+    @IBAction func backToCamera() {
+        dissableSendBackButtons()
+        view.willRemoveSubview(photo)
+        photo.removeFromSuperview()
+        enableCaptureGalleryButtons()
     }
     
     override func viewDidLoad() {
+        dissableSendBackButtons()
         styleCaptureButton()
         captureSession = AVCaptureSession()
         configureCameraPreviewView()
@@ -64,7 +81,6 @@ class ViewController: UIViewController, AVCapturePhotoCaptureDelegate {
         videoPreviewLayer.videoGravity = AVLayerVideoGravityResizeAspectFill
         videoPreviewLayer.frame = view.layer.bounds
         previewView.layer.addSublayer(videoPreviewLayer)
-        view.insertSubview(photo, aboveSubview: previewView)
     }
     
     func configureCaptureDevice() {
@@ -83,6 +99,34 @@ class ViewController: UIViewController, AVCapturePhotoCaptureDelegate {
         captureSession.addOutput(photoOutput)
     }
     
+    
+    func dissableCaptureGalleryButtons() {
+        captureButton.isHidden = true
+        captureButton.isEnabled = false
+        galleryButton.isHidden = true
+        galleryButton.isEnabled = false
+    }
+    
+    func enableCaptureGalleryButtons() {
+        captureButton.isHidden = false
+        captureButton.isEnabled = true
+        galleryButton.isHidden = false
+        galleryButton.isEnabled = true
+    }
+    
+    func dissableSendBackButtons() {
+        sendButton.isHidden = true
+        sendButton.isEnabled = false
+        backButton.isHidden = true
+        backButton.isEnabled = false
+    }
+    
+    func enableSendBackButtons() {
+        sendButton.isHidden = false
+        sendButton.isEnabled = true
+        backButton.isHidden = false
+        backButton.isEnabled = true
+    }
 }
 
 

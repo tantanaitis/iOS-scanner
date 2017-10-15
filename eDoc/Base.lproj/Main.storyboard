@@ -21,16 +21,29 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="uUF-21-Vba">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            </imageView>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="JRg-cD-pFC">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ejq-Si-hW6">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="uUF-21-Vba">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3bi-LS-pvZ" userLabel="BackButton">
+                                <rect key="frame" x="16" y="16" width="40" height="34"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" image="BackButtonImage"/>
+                                <connections>
+                                    <action selector="backToCamera" destination="BYZ-38-t0r" eventType="touchDown" id="sv3-3K-JpA"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BUV-OY-ULv" userLabel="SendButton">
+                                <rect key="frame" x="163" y="600" width="48" height="48"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" image="SendButtonImage"/>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ejq-Si-hW6" userLabel="GalleryButton">
                                 <rect key="frame" x="298" y="597" width="80" height="72"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" image="OpenGalleryButtonImage"/>
@@ -51,9 +64,12 @@
                     <nil key="simulatedTopBarMetrics"/>
                     <nil key="simulatedBottomBarMetrics"/>
                     <connections>
+                        <outlet property="backButton" destination="3bi-LS-pvZ" id="VcM-D7-Dpi"/>
                         <outlet property="captureButton" destination="Lo9-RL-aXb" id="Ye1-er-qrR"/>
+                        <outlet property="galleryButton" destination="ejq-Si-hW6" id="ppU-4V-iSm"/>
                         <outlet property="photo" destination="uUF-21-Vba" id="GwF-65-Jic"/>
                         <outlet property="previewView" destination="JRg-cD-pFC" id="6py-Rc-RuC"/>
+                        <outlet property="sendButton" destination="BUV-OY-ULv" id="qYu-ew-eHU"/>
                         <outlet property="view" destination="8bC-Xf-vdC" id="1mV-1H-o4g"/>
                     </connections>
                 </viewController>
@@ -189,6 +205,8 @@
         </scene>
     </scenes>
     <resources>
+        <image name="BackButtonImage" width="72" height="72"/>
         <image name="OpenGalleryButtonImage" width="48" height="48"/>
+        <image name="SendButtonImage" width="48" height="48"/>
     </resources>
 </document>
