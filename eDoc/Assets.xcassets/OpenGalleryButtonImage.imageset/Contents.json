@@ -2,17 +2,17 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "perm_media_black_144x144.png",
+      "filename" : "ic_photo_library_white_48pt.png",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
-      "filename" : "perm_media_black_144x144-1.png",
+      "filename" : "ic_photo_library_white_48pt_2x.png",
       "scale" : "2x"
     },
     {
       "idiom" : "universal",
-      "filename" : "perm_media_black_144x144-2.png",
+      "filename" : "ic_photo_library_white_48pt_3x.png",
       "scale" : "3x"
     }
   ],
