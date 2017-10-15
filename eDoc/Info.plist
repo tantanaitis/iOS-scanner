@@ -24,10 +24,10 @@
 	<string>LaunchScreen</string>
 	<key>UIMainStoryboardFile</key>
 	<string>Main</string>
-	<key>UIRequiredDeviceCapabilities</key>
-	<array>
-		<string>armv7</string>
-	</array>
+	<key>NSCameraUsageDescription</key>
+	<string>Aplikacijai reikalingas leidimas naudotis kamera</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>Aplikacijai reikalingas leidimas naudotis nuotraukų biblioteka</string>
 	<key>UISupportedInterfaceOrientations</key>
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>
