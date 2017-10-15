@@ -42,11 +42,17 @@
                                 <rect key="frame" x="163" y="600" width="48" height="48"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" image="SendButtonImage"/>
+                                <connections>
+                                    <action selector="send" destination="BYZ-38-t0r" eventType="touchDown" id="rSj-HL-1Gh"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ejq-Si-hW6" userLabel="GalleryButton">
                                 <rect key="frame" x="298" y="597" width="80" height="72"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" image="OpenGalleryButtonImage"/>
+                                <connections>
+                                    <action selector="openGallery" destination="BYZ-38-t0r" eventType="touchDown" id="RlH-Jw-Fs3"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleAspectFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Lo9-RL-aXb">
                                 <rect key="frame" x="160" y="597" width="55" height="55"/>

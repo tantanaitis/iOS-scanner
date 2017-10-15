@@ -9,12 +9,13 @@
 import UIKit
 import AVFoundation
 
-class ViewController: UIViewController, AVCapturePhotoCaptureDelegate {
+class ViewController: UIViewController, AVCapturePhotoCaptureDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
     var captureSession: AVCaptureSession!
     var videoPreviewLayer: AVCaptureVideoPreviewLayer!
     var captureDeviceInput: AVCaptureDeviceInput!
     var photoOutput: AVCapturePhotoOutput!
+    let imagePicker = UIImagePickerController()
     @IBOutlet var previewView: UIView!
     @IBOutlet var captureButton: UIButton!
     @IBOutlet var galleryButton: UIButton!
@@ -25,7 +26,7 @@ class ViewController: UIViewController, AVCapturePhotoCaptureDelegate {
     @IBAction func captureImage() {
         dissableCaptureGalleryButtons()
         let settings = AVCapturePhotoSettings()
-        view.insertSubview(photo, aboveSubview: previewView)
+        
         photoOutput.capturePhoto(with: settings, delegate: self)
         enableSendBackButtons()
     }
@@ -36,12 +37,18 @@ class ViewController: UIViewController, AVCapturePhotoCaptureDelegate {
     
     @IBAction func backToCamera() {
         dissableSendBackButtons()
-        view.willRemoveSubview(photo)
-        photo.removeFromSuperview()
+        removePhotoOutput()
         enableCaptureGalleryButtons()
     }
     
+    @IBAction func openGallery() {
+        imagePicker.allowsEditing = false
+        imagePicker.sourceType = .photoLibrary
+        present(imagePicker, animated: true, completion: nil)
+    }
+    
     override func viewDidLoad() {
+        imagePicker.delegate = self
         dissableSendBackButtons()
         styleCaptureButton()
         captureSession = AVCaptureSession()
@@ -61,12 +68,26 @@ class ViewController: UIViewController, AVCapturePhotoCaptureDelegate {
         self.navigationController?.setNavigationBarHidden(false, animated: animated)
     }
     
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+        if let pickedImage = info[UIImagePickerControllerOriginalImage] as? UIImage {
+            removePhotoOutput()
+            photo.image = pickedImage
+            view.insertSubview(photo, aboveSubview: previewView)
+            dissableCaptureGalleryButtons()
+            enableSendBackButtons()
+        }
+        dismiss(animated: true, completion: nil)
+    }
+    
     func capture(_ captureOutput: AVCapturePhotoOutput, didFinishProcessingPhotoSampleBuffer photoSampleBuffer: CMSampleBuffer?, previewPhotoSampleBuffer: CMSampleBuffer?,
                  resolvedSettings: AVCaptureResolvedPhotoSettings, bracketSettings: AVCaptureBracketedStillImageSettings?, error: Swift.Error?) {
             
         if let buffer = photoSampleBuffer, let data = AVCapturePhotoOutput.jpegPhotoDataRepresentation(forJPEGSampleBuffer: buffer, previewPhotoSampleBuffer: nil),
             let image = UIImage(data: data) {
+            removePhotoOutput()
             photo.image = image
+            view.insertSubview(photo, aboveSubview: previewView)
+            
         }
     }
     
@@ -99,6 +120,10 @@ class ViewController: UIViewController, AVCapturePhotoCaptureDelegate {
         captureSession.addOutput(photoOutput)
     }
     
+    func removePhotoOutput() {
+        view.willRemoveSubview(photo)
+        photo.removeFromSuperview()
+    }
     
     func dissableCaptureGalleryButtons() {
         captureButton.isHidden = true
